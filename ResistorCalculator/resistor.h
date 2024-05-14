@@ -9,8 +9,6 @@ public:
 
 	Resistor(double res, bool trueForParallel);
 
-	Resistor getResistor();
-
 	double getResistance();
 
 	bool isParallel();

@@ -30,6 +30,9 @@
     <ClInclude Include="resistor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Resistors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resistor.png">
@@ -44,6 +47,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="resistor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Resistors.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

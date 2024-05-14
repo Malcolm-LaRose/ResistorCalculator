@@ -22,9 +22,9 @@ public:
 
 	void handleEvents();
 
-	void update(uint64_t frameTime);
+	void update();
 
-	void render(uint64_t frameTime);
+	void render();
 
 	void clean();
 

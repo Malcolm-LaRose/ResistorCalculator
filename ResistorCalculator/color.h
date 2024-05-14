@@ -28,6 +28,7 @@ public:
         MAGENTA,
         DRKGRY,
         EIGENGRAU,
+        LANDLORDWHITE,
         TRANSP
     };
 
@@ -43,6 +44,7 @@ public:
         case MAGENTA: return { 255, 0, 255, 255 };
         case DRKGRY: return { 55, 55, 55, 255 };
         case EIGENGRAU: return { 22, 22, 29, 255 };
+        case LANDLORDWHITE: return { 250, 249, 246, 255 };
         case TRANSP: return { 0, 0, 0, 0 };
         default:      throw std::invalid_argument("Invalid named color");
         }
@@ -60,6 +62,7 @@ public:
         case MAGENTA: return { 255, 0, 255 };
         case DRKGRY: return { 55, 55, 55, };
         case EIGENGRAU: return { 22, 22, 29, 255 };
+        case LANDLORDWHITE: return { 250, 249, 246, 255 };
         case TRANSP: return { 0, 0, 0, 0 };
         default:      throw std::invalid_argument("Invalid named color");
         }
@@ -77,6 +80,7 @@ public:
         case MAGENTA: return { 255, 0, 255, 255 };
         case DRKGRY: return { 55, 55, 55, 255 };
         case EIGENGRAU: return { 22, 22, 29, 255 };
+        case LANDLORDWHITE: return { 250, 249, 246, 255 };
         case TRANSP: return { 0, 0, 0, 0 };
         default:      throw std::invalid_argument("Invalid named color");
         }

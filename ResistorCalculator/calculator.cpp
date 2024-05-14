@@ -90,11 +90,11 @@ void Calculator::handleEvents() {
 
 }
 
-void Calculator::update(uint64_t frameTime) {
+void Calculator::update() {
 
 }
 
-void Calculator::render(uint64_t frameTime) {
+void Calculator::render() {
 	SDL_RenderClear(renderer);
 
 	SDL_RenderPresent(renderer);

@@ -33,14 +33,16 @@ int main(int argc, char* argv[]) {
 
 		frameStart = SDL_GetTicks();
 
-		calc->handleEvents(); // Event handling
-		calc->update(frameTime); // Game logic
-		calc->render(frameTime); // Rendering
+		calc->handleEvents(); // Event handling --> User input
+		calc->update(); // Game logic --> Resistance calulation
+		calc->render(); // Rendering --> SDL BS
 
 		// timer->markFrameEndTime(); 
 		// timer->logFPS();
+		// 
 		// system("cls");
 		// std::cout << "\rAVG SDL FPS: " << (wrapper->getCount() * 1000) / SDL_GetTicks() << std::endl; --> Agrees with below
+
 		std::cout << "\rAVG FPS: " << (count * 1000000) / timer->getTotalTimeElapsed().count() << std::flush;
 
 		frameTime = SDL_GetTicks() - frameStart;
