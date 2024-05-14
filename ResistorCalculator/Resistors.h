@@ -13,9 +13,9 @@ public:
 
 	Resistors();
 
-	void addParallelResistor();
+	void addParallelResistor(int res);
 
-	void addSeriesResistor();
+	void addSeriesResistor(int res);
 
 	double calculateTotalResistance();
 
@@ -25,10 +25,15 @@ public:
 
 	double getTotalResistance();
 
+	int getNumResistors();
+
 
 private:
 	std::vector<std::vector<Resistor>> setOfResistors;
 	double totalResistance;
+
+	int numResistors;
+	int colNum;
 
 
 };

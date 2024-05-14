@@ -1,13 +1,20 @@
 #include "Resistors.h"
+#include "resistor.h"
 
-Resistors::Resistors() : totalResistance(0) {}
+Resistors::Resistors() : totalResistance(0), numResistors(0) {}
 
-void Resistors::addParallelResistor() {
+void Resistors::addParallelResistor(int res) {
 	// Push to current vector
+
+	numResistors++;
+	if (colNum == 0) colNum++;
 }
 
-void Resistors::addSeriesResistor() {
+void Resistors::addSeriesResistor(int res) {
 	// Add as first member of next vector
+
+	numResistors++;
+	colNum++;
 }
 
 double Resistors::calculateTotalResistance() {
@@ -25,9 +32,8 @@ double Resistors::calculateParallelResistance(std::vector<Resistor> parallelResi
 		}
 		inverseSum += 1.0 / resistor.getResistance();
 	}
+	return 1.0 / inverseSum;
 }
-
-
 
 Resistor Resistors::getResistor(int col, int row) {
 	return setOfResistors[col][row];
@@ -35,5 +41,9 @@ Resistor Resistors::getResistor(int col, int row) {
 
 double Resistors::getTotalResistance() {
 	return totalResistance;
+}
+
+int Resistors::getNumResistors() {
+	return numResistors;
 }
 

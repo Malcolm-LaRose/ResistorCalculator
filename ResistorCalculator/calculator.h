@@ -5,6 +5,8 @@
 #define CALCULATOR_H
 
 #include "Settings.h"
+#include "Resistors.h"
+#include "resistor.h"
 
 #include <SDL.h>
 #include <SDL_ttf.h>
@@ -30,6 +32,8 @@ public:
 
 	bool isRunning();
 
+
+
 	static SDL_Renderer* renderer;
 
 
@@ -40,6 +44,7 @@ private:
 	SDL_Window* window;
 	int screenWidth;
 	int screenHeight;
+	Resistors resistors;
 
 
 

@@ -19,6 +19,8 @@ private:
 	double resistance;
 	bool parallel;
 
+	
+
 
 
 };

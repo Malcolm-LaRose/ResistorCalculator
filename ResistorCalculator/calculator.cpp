@@ -1,5 +1,7 @@
 #include "calculator.h"
 #include "Settings.h"
+#include "Resistors.h"
+#include "resistor.h"
 
 #include <iostream>
 
@@ -75,16 +77,27 @@ void Calculator::handleEvents() {
 	SDL_Event event;
 	SDL_PollEvent(&event); // Pointer to event
 
-	switch (event.type) {
-	case SDL_QUIT:
-		running = false;
-		break;
+	while (SDL_PollEvent(&event) != 0) {
 
-		// Add cases
+		// Log event type
+		// printf("Event type: %d\n", event.type);
 
-	default:
-		break;
+		if (event.type == SDL_QUIT) {
+			clean();
+		}
 
+		else if (event.type == SDL_KEYDOWN && event.key.repeat == 0) {
+			switch (event.key.keysym.sym) {
+			case SDLK_PLUS:
+				// Add series resistor
+
+				break;
+			case SDLK_ASTERISK:
+				// Add parallel resistor
+
+				break;
+			}
+		}
 	}
 
 
