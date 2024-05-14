@@ -13,9 +13,9 @@ public:
 
 	Resistors();
 
-	void addParallelResistor(int res);
+	void addParallelResistor(double res);
 
-	void addSeriesResistor(int res);
+	void addSeriesResistor(double res);
 
 	double calculateTotalResistance();
 

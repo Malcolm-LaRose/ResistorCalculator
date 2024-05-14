@@ -17,7 +17,7 @@ public:
 
 private:
 	double resistance;
-	bool parallel;
+	bool parallel; // May not be necessary
 
 	
 

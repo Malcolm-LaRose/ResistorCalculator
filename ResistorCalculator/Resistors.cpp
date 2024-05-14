@@ -1,17 +1,28 @@
 #include "Resistors.h"
 #include "resistor.h"
 
-Resistors::Resistors() : totalResistance(0), numResistors(0) {}
+Resistors::Resistors() : totalResistance(0), numResistors(0), colNum(0) {}
 
-void Resistors::addParallelResistor(int res) {
-	// Push to current vector
+void Resistors::addParallelResistor(double res) {
+	// Push Resistor to current vector
+	if (numResistors == 0) {
+		addSeriesResistor(res);
+	}
+	else {
+		Resistor resistor(res, true);
 
+		setOfResistors[colNum].push_back(resistor);
+	}
 	numResistors++;
-	if (colNum == 0) colNum++;
 }
 
-void Resistors::addSeriesResistor(int res) {
-	// Add as first member of next vector
+void Resistors::addSeriesResistor(double res) {
+	// Add Resistor as first member of next vector
+	std::vector<Resistor> resistorCol;
+	Resistor resistor(res, false);
+	resistorCol.push_back(resistor);
+
+	setOfResistors.push_back(resistorCol);
 
 	numResistors++;
 	colNum++;
@@ -19,6 +30,9 @@ void Resistors::addSeriesResistor(int res) {
 
 double Resistors::calculateTotalResistance() {
 	// Sum of all resistances
+
+	if (colNum == 0) return 0;
+
 	for (auto& resistorColumn : setOfResistors) {
 		return Resistors::calculateParallelResistance(resistorColumn);
 	}
