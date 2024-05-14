@@ -144,7 +144,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="calculator.h" />
     <ClInclude Include="color.h" />
+    <ClInclude Include="resistor.h" />
     <ClInclude Include="Settings.h" />
     <ClInclude Include="Timer.h" />
   </ItemGroup>
@@ -152,7 +154,9 @@
     <Image Include="Resistor.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="calculator.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="resistor.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
