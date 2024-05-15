@@ -149,6 +149,7 @@
     <ClInclude Include="resistor.h" />
     <ClInclude Include="Resistors.h" />
     <ClInclude Include="Settings.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="Timer.h" />
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +160,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="resistor.cpp" />
     <ClCompile Include="Resistors.cpp" />
+    <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

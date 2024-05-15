@@ -5,6 +5,8 @@
 
 #include "resistor.h"
 
+#include <SDL.h>
+
 #include <vector>
 
 // For storing an arbitrary set of Resistor objects
@@ -27,6 +29,8 @@ public:
 
 	int getNumResistors();
 
+	void renderResistors();
+
 
 private:
 	std::vector<std::vector<Resistor>> setOfResistors;
@@ -34,6 +38,8 @@ private:
 
 	int numResistors;
 	int colNum;
+
+	SDL_Texture* resistorTexture;
 
 
 };

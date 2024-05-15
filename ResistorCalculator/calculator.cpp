@@ -67,6 +67,8 @@ void Calculator::initSDL() {
 }
 
 void Calculator::initObjects() {
+	// Load resistor texture
+
 
 	// init objects here
 
@@ -90,11 +92,11 @@ void Calculator::handleEvents() {
 			switch (event.key.keysym.sym) {
 			case SDLK_PLUS:
 				// Add series resistor
-
+				resistors.addSeriesResistor(1);
 				break;
 			case SDLK_ASTERISK:
 				// Add parallel resistor
-
+				resistors.addParallelResistor(1);
 				break;
 			}
 		}
@@ -104,7 +106,7 @@ void Calculator::handleEvents() {
 }
 
 void Calculator::update() {
-
+	resistors.calculateTotalResistance();
 }
 
 void Calculator::render() {

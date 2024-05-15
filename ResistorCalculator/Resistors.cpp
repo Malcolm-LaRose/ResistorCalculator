@@ -1,7 +1,9 @@
 #include "Resistors.h"
 #include "resistor.h"
 
-Resistors::Resistors() : totalResistance(0), numResistors(0), colNum(0) {}
+Resistors::Resistors() : totalResistance(0), numResistors(0), colNum(0) {
+	// Call resistor texture init
+}
 
 void Resistors::addParallelResistor(double res) {
 	// Push Resistor to current vector
@@ -59,5 +61,9 @@ double Resistors::getTotalResistance() {
 
 int Resistors::getNumResistors() {
 	return numResistors;
+}
+
+void renderResistors() {
+	
 }
 

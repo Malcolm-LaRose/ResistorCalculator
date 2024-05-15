@@ -23,9 +23,9 @@ struct MySettings {
 
 	const std::string windowTitle = "MyWindow";
 
-	const SDL_Color bgColor = Color::getSDLColor(Color::EIGENGRAU);
+	const SDL_Color bgColor = Color::getSDLColor(Color::LANDLORDWHITE);
 
-	const int frameRateCap = 244; // Set to 1000 for ~max (unstable)
+	const int frameRateCap = 1000; // Set to 1000 for ~max (unstable)
 
 
 
