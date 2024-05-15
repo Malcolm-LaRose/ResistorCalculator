@@ -111,7 +111,8 @@ void Calculator::handleEvents() {
 }
 
 void Calculator::update() {
-	resistors.calculateTotalResistance();
+	double res = resistors.calculateTotalResistance();
+	std::cout << "\rResistance Eq. = " << res << std::flush;
 }
 
 void Calculator::render() {

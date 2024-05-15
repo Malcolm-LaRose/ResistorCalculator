@@ -21,7 +21,6 @@ void Resistors::addParallelResistor(double res) {
 	// setOfResistors[numSeriesResistors - 1].push_back(resistor);
 	lastColumn.push_back(resistor);
 	numParallelResistors++;
-	calculateTotalResistance();
 	// std::cout << "Added parallel resistor: " << resistor.getResistance() << std::endl; // Debugging output
 
 }
@@ -36,18 +35,26 @@ void Resistors::addSeriesResistor(double res) {
 	setOfResistors.push_back(resistorCol);
 	// std::cout << "Added series resistor: " << resistor.getResistance() << std::endl; // Debugging output
 	numSeriesResistors++;
-	calculateTotalResistance();
 }
 
 double Resistors::calculateTotalResistance() {
+	// Reset totalResistance before calculating
+	totalResistance = 0;
+
 	// Sum of all resistances
-	if (numParallelResistors == 0 || numSeriesResistors == 0) return 0;
+	if (numSeriesResistors == 0) return 0;
 
 	for (auto& resistorColumn : setOfResistors) {
-		totalResistance += Resistors::calculateParallelResistance(resistorColumn);
+		// If there's only one resistor in the column, treat it as a single parallel resistor
+		if (resistorColumn.size() == 1) {
+			totalResistance += resistorColumn.front().getResistance();
+		}
+		else {
+			totalResistance += calculateParallelResistance(resistorColumn);
+		}
 	}
 
-	// std::cout << "Total (Ohms): " << total << std::endl; --> Doesn't work?
+	// std::cout << "Total (Ohms): " << totalResistance << std::endl; // Uncomment if needed
 
 	return totalResistance;
 }
