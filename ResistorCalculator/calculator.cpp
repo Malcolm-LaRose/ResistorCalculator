@@ -69,6 +69,7 @@ void Calculator::initSDL() {
 void Calculator::initObjects() {
 	// Load resistor texture
 
+	
 
 	// init objects here
 
@@ -111,6 +112,8 @@ void Calculator::update() {
 
 void Calculator::render() {
 	SDL_RenderClear(renderer);
+
+	resistors.renderResistors(Calculator::renderer);
 
 	SDL_RenderPresent(renderer);
 }

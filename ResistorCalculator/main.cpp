@@ -3,6 +3,9 @@
 #include "timer.h"
 
 #include "calculator.h"
+#include "Resistors.h"
+#include "resistor.h"
+#include "Texture.h"
 
 #include <SDL.h>
 #include <SDL_image.h>

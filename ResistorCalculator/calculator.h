@@ -6,10 +6,12 @@
 
 #include "Settings.h"
 #include "Resistors.h"
-#include "resistor.h"
+// #include "resistor.h"
 
 #include <SDL.h>
 #include <SDL_ttf.h>
+
+class Resistor;
 
 class Calculator {
 public:

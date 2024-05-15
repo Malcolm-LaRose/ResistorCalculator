@@ -27,7 +27,7 @@ struct MySettings {
 
 	const int frameRateCap = 1000; // Set to 1000 for ~max (unstable)
 
-
+	const float resistorTextureSize = 200;
 
 
 };

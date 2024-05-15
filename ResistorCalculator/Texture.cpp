@@ -1,10 +1,8 @@
 #include "Texture.h"
 
-Texture::Texture()  {}
-
-SDL_Texture* Texture::loadTexture(const char* fileName) {
+SDL_Texture* Texture::loadTexture(const char* fileName, SDL_Renderer* rend) {
 	SDL_Surface* tempSurface = IMG_Load(fileName);
-	SDL_Texture* tex = SDL_CreateTextureFromSurface(Calculator::renderer, tempSurface);
+	SDL_Texture* tex = SDL_CreateTextureFromSurface(rend, tempSurface);
 	SDL_FreeSurface(tempSurface);
 
 	if (!tempSurface) {

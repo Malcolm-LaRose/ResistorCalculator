@@ -3,6 +3,7 @@
 #ifndef RESISTORS_H
 #define RESISTORS_H
 
+#include "Settings.h"
 #include "resistor.h"
 
 #include <SDL.h>
@@ -27,19 +28,23 @@ public:
 
 	double getTotalResistance();
 
-	int getNumResistors();
+	int getNumSeriesResistors();
 
-	void renderResistors();
+	int getNumParallelResistors();
+
+	void renderResistors(SDL_Renderer* renderer); // Tells resistors where to be rendered
 
 
 private:
 	std::vector<std::vector<Resistor>> setOfResistors;
 	double totalResistance;
 
-	int numResistors;
-	int colNum;
+	int numParallelResistors;
+	int numSeriesResistors;
 
-	SDL_Texture* resistorTexture;
+	SDL_Texture* totalResistanceTexture;
+
+	const MySettings& settings;
 
 
 };

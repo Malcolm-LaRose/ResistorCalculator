@@ -1,39 +1,39 @@
 #include "Resistors.h"
+#include "Settings.h"
 #include "resistor.h"
 
-Resistors::Resistors() : totalResistance(0), numResistors(0), colNum(0) {
+Resistors::Resistors() : totalResistance(0), numParallelResistors(0), numSeriesResistors(0), settings(MySettings::getInstance()) {
 	// Call resistor texture init
 }
 
 void Resistors::addParallelResistor(double res) {
 	// Push Resistor to current vector
-	if (numResistors == 0) {
+	if (numParallelResistors == 0 && numSeriesResistors == 0) {
 		addSeriesResistor(res);
 	}
 	else {
-		Resistor resistor(res, true);
+		Resistor resistor(res, true, numSeriesResistors * 200.0, settings.screenCenter.y - settings.resistorTextureSize + (numParallelResistors * 200.0));
 
-		setOfResistors[colNum].push_back(resistor);
+		setOfResistors[numSeriesResistors - 1].push_back(resistor);
 	}
-	numResistors++;
+	numParallelResistors++;
 }
 
 void Resistors::addSeriesResistor(double res) {
 	// Add Resistor as first member of next vector
 	std::vector<Resistor> resistorCol;
-	Resistor resistor(res, false);
+	Resistor resistor(res, false, numSeriesResistors * 200.0, settings.screenCenter.y - settings.resistorTextureSize);
 	resistorCol.push_back(resistor);
 
 	setOfResistors.push_back(resistorCol);
 
-	numResistors++;
-	colNum++;
+	numSeriesResistors++;
 }
 
 double Resistors::calculateTotalResistance() {
 	// Sum of all resistances
 
-	if (colNum == 0) return 0;
+	if (numParallelResistors == 0 || numSeriesResistors == 0) return 0;
 
 	for (auto& resistorColumn : setOfResistors) {
 		return Resistors::calculateParallelResistance(resistorColumn);
@@ -59,11 +59,20 @@ double Resistors::getTotalResistance() {
 	return totalResistance;
 }
 
-int Resistors::getNumResistors() {
-	return numResistors;
+int Resistors::getNumSeriesResistors() {
+	return numSeriesResistors;
 }
 
-void renderResistors() {
-	
+int Resistors::getNumParallelResistors() {
+	return numSeriesResistors;
+}
+
+void Resistors::renderResistors(SDL_Renderer* renderer) {
+	// Loop over all resistors and call their render functions
+	for (int i = 0; i < numSeriesResistors; i++) {
+		for (int j = 0; j < numParallelResistors; j++) {
+			setOfResistors[i][j].renderResistor();
+		}
+	}
 }
 
