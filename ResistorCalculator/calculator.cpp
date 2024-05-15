@@ -96,12 +96,12 @@ void Calculator::handleEvents() {
 				case SDLK_s:
 					// Add series resistor
 					resistors.addSeriesResistor(1);
-					std::cout << "Series resistor added!" << std::endl; // Debugging output
+					// std::cout << "Series resistor added!" << std::endl; // Debugging output
 					break;
 				case SDLK_p:
 					// Add parallel resistor
 					resistors.addParallelResistor(1);
-					std::cout << "Parallel resistor added!" << std::endl; // Debugging output
+					// std::cout << "Parallel resistor added!" << std::endl; // Debugging output
 					break;
 				}
 			}

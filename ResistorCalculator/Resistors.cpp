@@ -2,47 +2,54 @@
 #include "Settings.h"
 #include "resistor.h"
 
+#include <iostream>
+
 Resistors::Resistors() : totalResistance(0), numParallelResistors(0), numSeriesResistors(0), settings(MySettings::getInstance()) {}
 
 void Resistors::addParallelResistor(double res) {
 	// Push Resistor to current vector
-	if (setOfResistors.empty()) {
+	if (numSeriesResistors == 0) {
 		addSeriesResistor(res);
 		return;
 	}
 
-
 	// Get the last column of resistors
-	auto& lastColumn = setOfResistors.back();
+	auto& lastColumn = setOfResistors[setOfResistors.size() - 1];
 
-	Resistor resistor(res, true, (numSeriesResistors) * 200.0, 200 - settings.resistorTextureSize + (numParallelResistors * 200.0));
+	Resistor resistor(res, true, ((numSeriesResistors - 1) * 200.0) + 25 * (numSeriesResistors - 1), 200 - settings.resistorTextureSize + ((numParallelResistors + 1) * 200.0));
 
 	// setOfResistors[numSeriesResistors - 1].push_back(resistor);
 	lastColumn.push_back(resistor);
 	numParallelResistors++;
-	std::cout << "Added parallel resistor: " << resistor.getResistance() << std::endl; // Debugging output
+	calculateTotalResistance();
+	// std::cout << "Added parallel resistor: " << resistor.getResistance() << std::endl; // Debugging output
+
 }
 
 void Resistors::addSeriesResistor(double res) {
 	numParallelResistors = 0;
 	// Add Resistor as first member of next vector
 	std::vector<Resistor> resistorCol;
-	Resistor resistor(res, false, (numSeriesResistors) * 200.0, 200 - settings.resistorTextureSize);
+	Resistor resistor(res, false, (numSeriesResistors * 200.0) + 25 * (numSeriesResistors), 200 - settings.resistorTextureSize);
 	resistorCol.push_back(resistor);
 
 	setOfResistors.push_back(resistorCol);
-	std::cout << "Added series resistor: " << resistor.getResistance() << std::endl; // Debugging output
+	// std::cout << "Added series resistor: " << resistor.getResistance() << std::endl; // Debugging output
 	numSeriesResistors++;
+	calculateTotalResistance();
 }
 
 double Resistors::calculateTotalResistance() {
 	// Sum of all resistances
-
 	if (numParallelResistors == 0 || numSeriesResistors == 0) return 0;
 
 	for (auto& resistorColumn : setOfResistors) {
-		return Resistors::calculateParallelResistance(resistorColumn);
+		totalResistance += Resistors::calculateParallelResistance(resistorColumn);
 	}
+
+	// std::cout << "Total (Ohms): " << total << std::endl; --> Doesn't work?
+
+	return totalResistance;
 }
 
 double Resistors::calculateParallelResistance(std::vector<Resistor> parallelResistorColumn) {
