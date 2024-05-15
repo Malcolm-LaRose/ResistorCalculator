@@ -2,6 +2,7 @@
 #include "Settings.h"
 #include "Resistors.h"
 #include "resistor.h"
+#include "Texture.h"
 
 #include <iostream>
 
@@ -69,6 +70,7 @@ void Calculator::initSDL() {
 void Calculator::initObjects() {
 	// Load resistor texture
 
+	Resistor::resistorTexture = Texture::loadTexture("Resistor.png", Calculator::renderer);
 	
 
 	// init objects here
@@ -76,34 +78,36 @@ void Calculator::initObjects() {
 }
 
 void Calculator::handleEvents() {
-
 	SDL_Event event;
-	SDL_PollEvent(&event); // Pointer to event
 
+	// Poll for events
 	while (SDL_PollEvent(&event) != 0) {
+		// Log event
+		//std::cout << "Event detected!" << std::endl; // Debugging output
 
-		// Log event type
-		// printf("Event type: %d\n", event.type);
-
-		if (event.type == SDL_QUIT) {
+		// Process events
+		switch (event.type) {
+		case SDL_QUIT:
 			clean();
-		}
-
-		else if (event.type == SDL_KEYDOWN && event.key.repeat == 0) {
-			switch (event.key.keysym.sym) {
-			case SDLK_PLUS:
-				// Add series resistor
-				resistors.addSeriesResistor(1);
-				break;
-			case SDLK_ASTERISK:
-				// Add parallel resistor
-				resistors.addParallelResistor(1);
-				break;
+			break;
+		case SDL_KEYDOWN:
+			if (event.key.repeat == 0) {
+				switch (event.key.keysym.sym) {
+				case SDLK_s:
+					// Add series resistor
+					resistors.addSeriesResistor(1);
+					std::cout << "Series resistor added!" << std::endl; // Debugging output
+					break;
+				case SDLK_p:
+					// Add parallel resistor
+					resistors.addParallelResistor(1);
+					std::cout << "Parallel resistor added!" << std::endl; // Debugging output
+					break;
+				}
 			}
+			break;
 		}
 	}
-
-
 }
 
 void Calculator::update() {

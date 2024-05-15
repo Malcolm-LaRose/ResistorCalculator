@@ -5,7 +5,7 @@
 
 // #include "Texture.h"
 
-
+#include <iostream>
 #include <SDL.h>
 
 class Resistor {
@@ -19,7 +19,9 @@ public:
 
 	bool isSeries();
 
-	void renderResistor();
+	void renderResistor(SDL_Renderer* renderer);
+
+	static SDL_Texture* resistorTexture;
 
 private:
 	double resistance;
@@ -28,8 +30,7 @@ private:
 	float xPos; // Position
 	float yPos;
 
-	SDL_Texture* resistorTexture;
-	SDL_Rect textRect;
+	SDL_FRect textRect;
 
 	
 

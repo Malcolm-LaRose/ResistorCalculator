@@ -14,6 +14,7 @@
 
 // Globals
 SDL_Renderer* Calculator::renderer = nullptr;
+SDL_Texture* Resistor::resistorTexture = nullptr;
 
 int main(int argc, char* argv[]) {
 
@@ -46,7 +47,7 @@ int main(int argc, char* argv[]) {
 		// system("cls");
 		// std::cout << "\rAVG SDL FPS: " << (wrapper->getCount() * 1000) / SDL_GetTicks() << std::endl; --> Agrees with below
 
-		std::cout << "\rAVG FPS: " << (count * 1000000) / timer->getTotalTimeElapsed().count() << std::flush;
+		// std::cout << "\rAVG FPS: " << (count * 1000000) / timer->getTotalTimeElapsed().count() << std::flush;
 
 		frameTime = SDL_GetTicks() - frameStart;
 

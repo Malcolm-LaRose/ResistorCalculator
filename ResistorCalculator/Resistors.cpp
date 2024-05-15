@@ -2,31 +2,36 @@
 #include "Settings.h"
 #include "resistor.h"
 
-Resistors::Resistors() : totalResistance(0), numParallelResistors(0), numSeriesResistors(0), settings(MySettings::getInstance()) {
-	// Call resistor texture init
-}
+Resistors::Resistors() : totalResistance(0), numParallelResistors(0), numSeriesResistors(0), settings(MySettings::getInstance()) {}
 
 void Resistors::addParallelResistor(double res) {
 	// Push Resistor to current vector
-	if (numParallelResistors == 0 && numSeriesResistors == 0) {
+	if (setOfResistors.empty()) {
 		addSeriesResistor(res);
+		return;
 	}
-	else {
-		Resistor resistor(res, true, numSeriesResistors * 200.0, settings.screenCenter.y - settings.resistorTextureSize + (numParallelResistors * 200.0));
 
-		setOfResistors[numSeriesResistors - 1].push_back(resistor);
-	}
+
+	// Get the last column of resistors
+	auto& lastColumn = setOfResistors.back();
+
+	Resistor resistor(res, true, (numSeriesResistors) * 200.0, 200 - settings.resistorTextureSize + (numParallelResistors * 200.0));
+
+	// setOfResistors[numSeriesResistors - 1].push_back(resistor);
+	lastColumn.push_back(resistor);
 	numParallelResistors++;
+	std::cout << "Added parallel resistor: " << resistor.getResistance() << std::endl; // Debugging output
 }
 
 void Resistors::addSeriesResistor(double res) {
+	numParallelResistors = 0;
 	// Add Resistor as first member of next vector
 	std::vector<Resistor> resistorCol;
-	Resistor resistor(res, false, numSeriesResistors * 200.0, settings.screenCenter.y - settings.resistorTextureSize);
+	Resistor resistor(res, false, (numSeriesResistors) * 200.0, 200 - settings.resistorTextureSize);
 	resistorCol.push_back(resistor);
 
 	setOfResistors.push_back(resistorCol);
-
+	std::cout << "Added series resistor: " << resistor.getResistance() << std::endl; // Debugging output
 	numSeriesResistors++;
 }
 
@@ -69,9 +74,10 @@ int Resistors::getNumParallelResistors() {
 
 void Resistors::renderResistors(SDL_Renderer* renderer) {
 	// Loop over all resistors and call their render functions
-	for (int i = 0; i < numSeriesResistors; i++) {
-		for (int j = 0; j < numParallelResistors; j++) {
-			setOfResistors[i][j].renderResistor();
+
+	for (auto& column : setOfResistors) {
+		for (auto& resistor : column) {
+			resistor.renderResistor(renderer);
 		}
 	}
 }
